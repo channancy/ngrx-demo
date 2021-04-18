@@ -1,6 +1,6 @@
 import { ActionReducerMap } from '@ngrx/store';
 import { covidReducer, CovidState } from '../covid/state/covid.reducer';
-import { deathsReducer, DeathsState } from '../deaths//state/death.reducer';
+import { deathsReducer, DeathsState } from '../deaths/state/deaths.reducer';
 import { searchReducer, SearchState } from '../search/state/search.reducer';
 
 export interface AppState {

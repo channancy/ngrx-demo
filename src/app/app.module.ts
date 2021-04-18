@@ -13,6 +13,14 @@ import { reducers } from './state/app.state';
 import { CovidComponent } from './covid/covid.component';
 import { DeathsComponent } from './deaths/deaths.component';
 import { SearchComponent } from './search/search.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { FormsModule } from '@angular/forms';
+import { EffectsModule } from '@ngrx/effects';
+import { HttpClientModule } from '@angular/common/http';
+import { CovidEffects } from './covid/state/covid.effects';
+import { DeathsEffects } from './deaths/state/deaths.effects';
 
 @NgModule({
   declarations: [
@@ -24,15 +32,22 @@ import { SearchComponent } from './search/search.component';
   imports: [
     BrowserModule,
     StoreModule.forRoot(reducers),
+    EffectsModule.forRoot([CovidEffects, DeathsEffects]),
     BrowserAnimationsModule,
+    FormsModule,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    FlexLayoutModule,
+    HttpClientModule,
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
     }),
+    EffectsModule.forRoot([]),
   ],
   providers: [],
   bootstrap: [AppComponent],

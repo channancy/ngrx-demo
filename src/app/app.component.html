@@ -1,7 +1,15 @@
-<mat-toolbar color="primary">
-  <span>NgRx Demo</span>
-  <span class="spacer"></span>
-</mat-toolbar>
-<app-search></app-search>
-<app-covid></app-covid>
-<app-deaths></app-deaths>
+<div fxLayout="column">
+  <div fxFlex="100">
+    <mat-toolbar color="primary">
+      <span>NgRx Demo</span>
+      <span class="spacer"></span>
+    </mat-toolbar>
+  </div>
+
+  <div fxFlex="100"><app-search></app-search></div>
+
+  <div fxLayout="row">
+    <div fxFlex="50"><app-covid></app-covid></div>
+    <div fxFlex="50"><app-deaths></app-deaths></div>
+  </div>
+</div>
