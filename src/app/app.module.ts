@@ -13,6 +13,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { reducers } from './state/app.state';
 
+import { AppEffects } from './state/app.effects';
 import { CovidEffects } from './covid/state/covid.effects';
 import { DeathsEffects } from './deaths/state/deaths.effects';
 
@@ -41,7 +42,7 @@ import { SearchComponent } from './search/search.component';
     HttpClientModule,
     FlexLayoutModule,
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([CovidEffects, DeathsEffects]),
+    EffectsModule.forRoot([AppEffects, CovidEffects, DeathsEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,

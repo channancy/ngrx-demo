@@ -1,12 +1,12 @@
 import { createAction, props } from '@ngrx/store';
-import { CovidData } from 'src/app/services/covidData';
+import { DeathsData } from 'src/app/services/deathsData';
 
 export const LoadData = createAction(
-  '[Covid] Load Data',
-  props<{ data: CovidData }>()
+  '[Deaths] Load Data',
+  props<{ data: DeathsData }>()
 );
 
 export const LoadDataFailure = createAction(
-  '[Covid] Load Data Failure',
+  '[Deaths] Load Data Failure',
   props<{ error: string }>()
 );

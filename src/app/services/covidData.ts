@@ -1,5 +1,5 @@
 export interface CovidData {
-  state: 'string';
+  state: string;
   population: number;
   actuals: {
     cases: number;

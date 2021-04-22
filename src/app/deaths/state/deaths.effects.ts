@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { map, catchError, tap, mergeMap } from 'rxjs/operators';
-import { CovidService } from '../../services/covid.service';
+import { map, catchError, switchMap } from 'rxjs/operators';
+import { DeathsService } from '../../services/deaths.service';
 import * as SearchActions from '../../search/state/search.actions';
-import { DeathsService } from 'src/app/services/deaths.service';
+import * as DeathsActions from './deaths.actions';
 
 @Injectable()
 export class DeathsEffects {
@@ -13,8 +13,15 @@ export class DeathsEffects {
     private deathsService: DeathsService
   ) {}
 
-  logActions$ = createEffect(
-    () => this.actions$.pipe(tap((action) => console.log(action))),
-    { dispatch: false }
-  );
+  loadData$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SearchActions.SelectState),
+      switchMap(({ state }) =>
+        this.deathsService.getDeathsDataByState(state.name).pipe(
+          map((data) => DeathsActions.LoadData({ data })),
+          catchError((error) => of(DeathsActions.LoadDataFailure({ error })))
+        )
+      )
+    );
+  });
 }

@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CovidData } from './covid';
 import { environment } from '../../environments/environment';
+import { DeathsData } from './deathsData';
 
 @Injectable({
   providedIn: 'root',
@@ -18,8 +18,8 @@ export class DeathsService {
 
   constructor(private http: HttpClient) {}
 
-  getDeathsDataByState(state: string): Observable<CovidData> {
-    return this.http.get<CovidData>(
+  getDeathsDataByState(state: string): Observable<DeathsData> {
+    return this.http.get<DeathsData>(
       `${this.cdcUrl}/muzy-jte6.json?jurisdiction_of_occurrence=${state}`,
       this.httpOptions
     );
