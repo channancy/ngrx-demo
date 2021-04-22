@@ -18,8 +18,8 @@ export class DeathsService {
 
   constructor(private http: HttpClient) {}
 
-  getDeathsDataByState(state: string): Observable<DeathsData> {
-    return this.http.get<DeathsData>(
+  getDeathsDataByState(state: string): Observable<DeathsData[]> {
+    return this.http.get<DeathsData[]>(
       `${this.cdcUrl}/muzy-jte6.json?jurisdiction_of_occurrence=${state}`,
       this.httpOptions
     );

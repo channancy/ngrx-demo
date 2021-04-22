@@ -3,7 +3,7 @@ import { DeathsData } from 'src/app/services/deathsData';
 
 export const LoadData = createAction(
   '[Deaths] Load Data',
-  props<{ data: DeathsData }>()
+  props<{ data: DeathsData[] }>()
 );
 
 export const LoadDataFailure = createAction(
