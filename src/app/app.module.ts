@@ -8,7 +8,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { environment } from '../environments/environment';
 
-import { StoreModule } from '@ngrx/store';
+import { ActionReducer, MetaReducer, StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { reducers } from './state/app.state';
@@ -27,6 +27,14 @@ import { MatSelectModule } from '@angular/material/select';
 import { CovidComponent } from './covid/covid.component';
 import { DeathsComponent } from './deaths/deaths.component';
 import { SearchComponent } from './search/search.component';
+import { localStorageSync } from 'ngrx-store-localstorage';
+
+export function localStorageSyncReducer(
+  reducer: ActionReducer<any>
+): ActionReducer<any> {
+  return localStorageSync({ keys: ['search'], rehydrate: true })(reducer);
+}
+const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
 
 @NgModule({
   declarations: [
@@ -41,7 +49,7 @@ import { SearchComponent } from './search/search.component';
     FormsModule,
     HttpClientModule,
     FlexLayoutModule,
-    StoreModule.forRoot(reducers),
+    StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot([AppEffects, CovidEffects, DeathsEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
