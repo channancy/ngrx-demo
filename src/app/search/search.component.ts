@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { Store } from '@ngrx/store';
+import { filter, first } from 'rxjs/operators';
 import { AppState } from '../state/app.state';
 import { LocationState } from './locationState';
 import { SelectState } from './state/search.actions';
+import { SearchState } from './state/search.reducer';
+import { Search } from './state/search.selectors';
 
 @Component({
   selector: 'app-search',
@@ -10,6 +14,8 @@ import { SelectState } from './state/search.actions';
   styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent implements OnInit {
+  search = this.fb.control('');
+
   states: LocationState[] = [
     { name: 'Alabama', abbreviation: 'AL' },
     { name: 'Alaska', abbreviation: 'AK' },
@@ -64,11 +70,30 @@ export class SearchComponent implements OnInit {
     { name: 'Wyoming', abbreviation: 'WY' },
   ];
 
-  constructor(private store: Store<AppState>) {}
+  constructor(private store: Store<AppState>, private fb: FormBuilder) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.search.valueChanges.subscribe((search: LocationState) => {
+      this.store.dispatch(SelectState({ state: search }));
+    });
 
-  selectState(event) {
-    this.store.dispatch(SelectState({ state: event.value }));
+    this.store
+      .select(Search)
+      .pipe(
+        filter((c) => !!c),
+        first()
+      )
+      .subscribe((search: SearchState) => {
+        if (search.state) {
+          this.search.setValue(search.state);
+        }
+      });
+  }
+
+  compareFn(state1: LocationState, state2: LocationState): boolean {
+    return (
+      state1?.name === state2?.name &&
+      state1?.abbreviation === state2?.abbreviation
+    );
   }
 }

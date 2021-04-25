@@ -1,6 +1,6 @@
 <mat-form-field appearance="fill">
   <mat-label>State</mat-label>
-  <mat-select name="state" (selectionChange)="selectState($event)">
+  <mat-select [compareWith]="compareFn" name="state" [formControl]="search">
     <mat-option *ngFor="let state of states" [value]="state">
       {{ state.name }}
     </mat-option>

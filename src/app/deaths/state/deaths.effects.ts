@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { map, catchError, switchMap } from 'rxjs/operators';
+import { map, catchError, switchMap, filter } from 'rxjs/operators';
 import { DeathsService } from '../../services/deaths.service';
 import * as SearchActions from '../../search/state/search.actions';
 import * as DeathsActions from './deaths.actions';
@@ -16,6 +16,7 @@ export class DeathsEffects {
   loadData$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(SearchActions.SelectState),
+      filter(({ state }) => !!state),
       switchMap(({ state }) =>
         this.deathsService.getDeathsDataByState(state.name).pipe(
           map((data) => DeathsActions.LoadData({ data })),
