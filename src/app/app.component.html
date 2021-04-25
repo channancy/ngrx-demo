@@ -1,4 +1,4 @@
-<div fxLayout="column">
+<div fxLayout="column" fxLayoutGap="10px">
   <div fxFlex="100">
     <mat-toolbar color="primary">
       <span>NgRx Demo</span>
@@ -6,10 +6,12 @@
     </mat-toolbar>
   </div>
 
-  <div fxFlex="100"><app-search></app-search></div>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <app-search></app-search>
+  </div>
 
-  <div fxLayout="row">
-    <div fxFlex="50"><app-covid></app-covid></div>
-    <div fxFlex="50"><app-deaths></app-deaths></div>
+  <div fxLayout="row" fxLayoutAlign="space-around center">
+    <app-covid></app-covid>
+    <app-deaths></app-deaths>
   </div>
 </div>
