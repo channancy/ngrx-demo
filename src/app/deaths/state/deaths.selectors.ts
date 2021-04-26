@@ -3,6 +3,7 @@ import { AppState } from 'src/app/state/app.state';
 import { Deaths } from './deaths';
 
 export const select = (state: AppState) => state;
+export const SelectLoading = (state: AppState) => state.covid.loading;
 
 export const SelectDeaths = createSelector(select, (state: AppState) =>
   state.deaths.stats

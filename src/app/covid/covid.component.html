@@ -1,38 +1,45 @@
-<ng-container *ngIf="covid$ | async as covid">
-  <div fxLayout="column" fxLayoutGap="10px">
-    <div fxLayout="column" fxLayoutAlign="center center">
-      <h3>COVID-19 Stats</h3>
+<div *ngIf="!(loading$ | async); else loadingRef">
+  <ng-container *ngIf="covid$ | async as covid">
+    <div fxLayout="column" fxLayoutGap="10px">
+      <div fxLayout="column" fxLayoutAlign="center center">
+        <h3>COVID-19 Stats</h3>
+      </div>
+
+      <div fxLayout="column" fxLayoutAlign="center center">
+        <mat-card>
+          <div class="figure">{{ covid.population }}</div>
+          <div class="label">Population</div>
+        </mat-card>
+      </div>
+
+      <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+        <mat-card>
+          <div class="figure">{{ covid.cases }}</div>
+          <div class="label">Cases</div>
+        </mat-card>
+
+        <mat-card>
+          <div class="figure">{{ covid.deaths }}</div>
+          <div class="label">Deaths</div>
+        </mat-card>
+      </div>
+
+      <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+        <mat-card>
+          <div class="figure">{{ covid.vaccinesDistributed }}</div>
+          <div class="label">Vaccines Distributed</div>
+        </mat-card>
+
+        <mat-card>
+          <div class="figure">{{ covid.vaccinesAdministered }}</div>
+          <div class="label">Vaccines Administered</div>
+        </mat-card>
+      </div>
     </div>
-
-    <div fxLayout="column" fxLayoutAlign="center center">
-      <mat-card>
-        <div class="figure">{{ covid.population }}</div>
-        <div class="label">Population</div>
-      </mat-card>
-    </div>
-
-    <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
-      <mat-card>
-        <div class="figure">{{ covid.cases }}</div>
-        <div class="label">Cases</div>
-      </mat-card>
-
-      <mat-card>
-        <div class="figure">{{ covid.deaths }}</div>
-        <div class="label">Deaths</div>
-      </mat-card>
-    </div>
-
-    <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
-      <mat-card>
-        <div class="figure">{{ covid.vaccinesDistributed }}</div>
-        <div class="label">Vaccines Distributed</div>
-      </mat-card>
-
-      <mat-card>
-        <div class="figure">{{ covid.vaccinesAdministered }}</div>
-        <div class="label">Vaccines Administered</div>
-      </mat-card>
-    </div>
+  </ng-container>
+</div>
+<ng-template #loadingRef>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <mat-spinner></mat-spinner>
   </div>
-</ng-container>
+</ng-template>

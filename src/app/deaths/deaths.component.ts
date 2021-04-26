@@ -8,6 +8,7 @@ import {
   SelectDeaths,
   SelectedWeek,
   SelectedWeekData,
+  SelectLoading,
   SelectWeeks,
 } from './state/deaths.selectors';
 
@@ -19,6 +20,7 @@ import {
 export class DeathsComponent implements OnInit {
   deaths$ = this.store.select(SelectedWeekData);
   weeks$ = this.store.select(SelectWeeks);
+  loading$ = this.store.select(SelectLoading);
   week = this.fb.control([]);
 
   constructor(private store: Store<AppState>, private fb: FormBuilder) {}
