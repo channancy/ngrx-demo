@@ -10,3 +10,8 @@ export const LoadDataFailure = createAction(
   '[Deaths] Load Data Failure',
   props<{ error: string }>()
 );
+
+export const SelectWeek = createAction(
+  '[Deaths] Select Week Ending Date',
+  props<{ week: string }>()
+);

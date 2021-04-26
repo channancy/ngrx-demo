@@ -13,7 +13,5 @@ export class CovidComponent implements OnInit {
 
   constructor(private store: Store<AppState>) {}
 
-  ngOnInit(): void {
-    this.store.select(SelectCovid).subscribe((x) => console.log(x));
-  }
+  ngOnInit(): void {}
 }

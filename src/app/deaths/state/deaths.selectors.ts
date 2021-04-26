@@ -23,9 +23,7 @@ export const SelectDeaths = createSelector(select, (state: AppState) =>
 export const SelectWeeks = createSelector(SelectDeaths, (deaths: Deaths[]) =>
   deaths
     ? deaths.reduce((list, d) => {
-        list.push({
-          weekEndingDate: d.weekEndingDate,
-        });
+        list.push(d.weekEndingDate);
         return list;
       }, [])
     : null
@@ -40,11 +38,7 @@ export const SelectedWeekData = createSelector(
   SelectDeaths,
   SelectedWeek,
   (deaths: Deaths[], weekEndingDate: string) =>
-    deaths
-      ? weekEndingDate
-        ? deaths.find(
-            (death: Deaths) => death.weekEndingDate === weekEndingDate
-          )
-        : deaths[0]
+    deaths && weekEndingDate
+      ? deaths.find((death: Deaths) => death.weekEndingDate === weekEndingDate)
       : null
 );
