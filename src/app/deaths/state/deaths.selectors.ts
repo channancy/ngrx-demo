@@ -3,6 +3,7 @@ import { AppState } from 'src/app/state/app.state';
 import { Deaths } from './deaths';
 
 export const select = (state: AppState) => state;
+
 export const SelectDeaths = createSelector(select, (state: AppState) =>
   state.deaths.stats
     ? state.deaths.stats.reduce((list, d) => {
@@ -18,13 +19,32 @@ export const SelectDeaths = createSelector(select, (state: AppState) =>
       }, [])
     : null
 );
-export const WeekEndingDates = createSelector(
+
+export const SelectWeeks = createSelector(SelectDeaths, (deaths: Deaths[]) =>
+  deaths
+    ? deaths.reduce((list, d) => {
+        list.push({
+          weekEndingDate: d.weekEndingDate,
+        });
+        return list;
+      }, [])
+    : null
+);
+
+export const SelectedWeek = createSelector(
+  select,
+  (state: AppState) => state.deaths.weekEndingDate
+);
+
+export const SelectedWeekData = createSelector(
   SelectDeaths,
-  (deaths: Deaths[]) => {
-    if (selectedUser && allBooks) {
-      return allBooks.filter((book: Book) => book.userId === selectedUser.id);
-    } else {
-      return allBooks;
-    }
-  }
+  SelectedWeek,
+  (deaths: Deaths[], weekEndingDate: string) =>
+    deaths
+      ? weekEndingDate
+        ? deaths.filter(
+            (death: Deaths) => death.weekEndingDate === weekEndingDate
+          )
+        : deaths[0]
+      : null
 );
