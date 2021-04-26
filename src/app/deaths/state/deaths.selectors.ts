@@ -1,8 +1,9 @@
 import { createSelector } from '@ngrx/store';
 import { AppState } from 'src/app/state/app.state';
+import { Deaths } from './deaths';
 
 export const select = (state: AppState) => state;
-export const Deaths = createSelector(select, (state: AppState) =>
+export const SelectDeaths = createSelector(select, (state: AppState) =>
   state.deaths.stats
     ? state.deaths.stats.reduce((list, d) => {
         list.push({
@@ -16,4 +17,14 @@ export const Deaths = createSelector(select, (state: AppState) =>
         return list;
       }, [])
     : null
+);
+export const WeekEndingDates = createSelector(
+  SelectDeaths,
+  (deaths: Deaths[]) => {
+    if (selectedUser && allBooks) {
+      return allBooks.filter((book: Book) => book.userId === selectedUser.id);
+    } else {
+      return allBooks;
+    }
+  }
 );

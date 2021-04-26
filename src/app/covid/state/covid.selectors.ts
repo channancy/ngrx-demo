@@ -2,7 +2,7 @@ import { createSelector } from '@ngrx/store';
 import { AppState } from 'src/app/state/app.state';
 
 export const select = (state: AppState) => state;
-export const Covid = createSelector(select, (state: AppState) =>
+export const SelectCovid = createSelector(select, (state: AppState) =>
   state.covid.stats
     ? {
         population: state.covid.stats.population,

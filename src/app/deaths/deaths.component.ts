@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../state/app.state';
-import { Deaths } from './state/deaths.selectors';
+import { SelectDeaths } from './state/deaths.selectors';
 
 @Component({
   selector: 'app-deaths',
@@ -12,6 +12,6 @@ export class DeathsComponent implements OnInit {
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.store.select(Deaths).subscribe((x) => console.log(x));
+    this.store.select(SelectDeaths).subscribe((x) => console.log(x));
   }
 }

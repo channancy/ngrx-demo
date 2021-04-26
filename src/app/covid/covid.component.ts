@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../state/app.state';
-import { Covid } from './state/covid.selectors';
+import { SelectCovid } from './state/covid.selectors';
 
 @Component({
   selector: 'app-covid',
@@ -12,6 +12,6 @@ export class CovidComponent implements OnInit {
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.store.select(Covid).subscribe((x) => console.log(x));
+    this.store.select(SelectCovid).subscribe((x) => console.log(x));
   }
 }
