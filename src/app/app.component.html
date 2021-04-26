@@ -1,17 +1,19 @@
 <div fxLayout="column" fxLayoutGap="10px">
-  <div fxFlex="100">
-    <mat-toolbar color="primary">
-      <span>NgRx Demo</span>
-      <span class="spacer"></span>
-    </mat-toolbar>
-  </div>
+  <mat-toolbar color="primary">
+    <span>NgRx Demo</span>
+    <span class="spacer"></span>
+  </mat-toolbar>
 
   <div fxLayout="column" fxLayoutAlign="center center">
     <app-search></app-search>
   </div>
 
   <div fxLayout="row" fxLayoutAlign="space-around center">
-    <app-covid></app-covid>
-    <app-deaths></app-deaths>
+    <div fxFlex="50">
+      <app-covid></app-covid>
+    </div>
+    <div fxFlex="50">
+      <app-deaths></app-deaths>
+    </div>
   </div>
 </div>

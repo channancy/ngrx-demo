@@ -9,6 +9,8 @@ import { SelectCovid } from './state/covid.selectors';
   styleUrls: ['./covid.component.scss'],
 })
 export class CovidComponent implements OnInit {
+  covid$ = this.store.select(SelectCovid);
+
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
