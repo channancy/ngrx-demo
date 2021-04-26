@@ -14,6 +14,8 @@ import {
   styleUrls: ['./deaths.component.scss'],
 })
 export class DeathsComponent implements OnInit {
+  deaths$ = this.store.select(SelectedWeekData);
+
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {

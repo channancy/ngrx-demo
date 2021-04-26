@@ -1,6 +1,10 @@
 <ng-container *ngIf="covid$ | async as covid">
   <div fxLayout="column" fxLayoutGap="10px">
     <div fxLayout="column" fxLayoutAlign="center center">
+      <h3>COVID-19 Stats</h3>
+    </div>
+
+    <div fxLayout="column" fxLayoutAlign="center center">
       <mat-card>
         <div class="figure">{{ covid.population }}</div>
         <div class="label">Population</div>

@@ -1,13 +1,38 @@
-<mat-card class="example-card">
-  <mat-card-header>
-    <mat-card-title>Shiba Inu</mat-card-title>
-    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content>
-    <p>
-      The Shiba Inu is the smallest of the six original and distinct spitz
-      breeds of dog from Japan. A small, agile dog that copes very well with
-      mountainous terrain, the Shiba Inu was originally bred for hunting.
-    </p>
-  </mat-card-content>
-</mat-card>
+<ng-container *ngIf="deaths$ | async as deaths">
+  <div fxLayout="column" fxLayoutGap="10px">
+    <div fxLayout="column" fxLayoutAlign="center center">
+      <h3>Death Stats</h3>
+    </div>
+
+    <div fxLayout="column" fxLayoutAlign="center center">
+      <mat-card>
+        <div class="figure">{{ deaths.allCause }}</div>
+        <div class="label">All Causes</div>
+      </mat-card>
+    </div>
+
+    <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+      <mat-card>
+        <div class="figure">{{ deaths.naturalCause }}</div>
+        <div class="label">Natural Causes</div>
+      </mat-card>
+
+      <mat-card>
+        <div class="figure">{{ deaths.diabetes }}</div>
+        <div class="label">Diabetes</div>
+      </mat-card>
+    </div>
+
+    <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+      <mat-card>
+        <div class="figure">{{ deaths.heartDisease }}</div>
+        <div class="label">Heart Disease</div>
+      </mat-card>
+
+      <mat-card>
+        <div class="figure">{{ deaths.influenzaAndPneumonia }}</div>
+        <div class="label">Influenza and Pneumonia</div>
+      </mat-card>
+    </div>
+  </div>
+</ng-container>

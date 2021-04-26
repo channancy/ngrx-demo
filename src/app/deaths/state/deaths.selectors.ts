@@ -42,7 +42,7 @@ export const SelectedWeekData = createSelector(
   (deaths: Deaths[], weekEndingDate: string) =>
     deaths
       ? weekEndingDate
-        ? deaths.filter(
+        ? deaths.find(
             (death: Deaths) => death.weekEndingDate === weekEndingDate
           )
         : deaths[0]
