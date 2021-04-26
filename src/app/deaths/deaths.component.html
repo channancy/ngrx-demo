@@ -2,7 +2,6 @@
   <ng-container *ngIf="deaths$ | async as deaths">
     <div fxLayout="column" fxLayoutGap="10px">
       <div fxLayout="column" fxLayoutAlign="center center">
-        <h3>Death Stats</h3>
         <ng-container *ngIf="weeks$ | async as weeks">
           <mat-form-field appearance="fill">
             <mat-label>Week Ending Date</mat-label>

@@ -10,7 +10,7 @@ export interface DeathsState {
 }
 
 const initialState: DeathsState = {
-  stats: null,
+  stats: [],
   weekEndingDate: null,
   loading: false,
 };
@@ -26,7 +26,10 @@ export const deathsReducer = createReducer<DeathsState>(
     stats: data,
     weekEndingDate: state.weekEndingDate
       ? state.weekEndingDate
-      : data[0].week_ending_date,
+      : data.length > 0
+      ? data[0].week_ending_date
+      : null,
+    loading: false,
   })),
   on(SelectWeek, (state, { week }) => ({
     ...state,
