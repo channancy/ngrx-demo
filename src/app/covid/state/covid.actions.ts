@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { createAction, props } from '@ngrx/store';
 import { CovidData } from 'src/app/services/covidData';
 
@@ -8,5 +9,5 @@ export const LoadData = createAction(
 
 export const LoadDataFailure = createAction(
   '[Covid] Load Data Failure',
-  props<{ error: string }>()
+  props<{ error: HttpErrorResponse }>()
 );

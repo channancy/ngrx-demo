@@ -1,7 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { SelectState } from 'src/app/search/state/search.actions';
 import { DeathsData } from 'src/app/services/deathsData';
-import { LoadData, SelectWeek } from './deaths.actions';
+import { LoadData, LoadDataFailure, SelectWeek } from './deaths.actions';
 
 export interface DeathsState {
   stats: DeathsData[];
@@ -26,7 +26,7 @@ export const deathsReducer = createReducer<DeathsState>(
     stats: data,
     weekEndingDate: state.weekEndingDate
       ? state.weekEndingDate
-      : data.length > 0
+      : data.length
       ? data[0].week_ending_date
       : null,
     loading: false,
@@ -34,5 +34,11 @@ export const deathsReducer = createReducer<DeathsState>(
   on(SelectWeek, (state, { week }) => ({
     ...state,
     weekEndingDate: week,
+  })),
+  on(LoadDataFailure, (state) => ({
+    ...state,
+    stats: [],
+    weekEndingDate: null,
+    loading: false,
   }))
 );

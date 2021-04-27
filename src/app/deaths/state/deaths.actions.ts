@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { createAction, props } from '@ngrx/store';
 import { DeathsData } from 'src/app/services/deathsData';
 
@@ -8,7 +9,7 @@ export const LoadData = createAction(
 
 export const LoadDataFailure = createAction(
   '[Deaths] Load Data Failure',
-  props<{ error: string }>()
+  props<{ error: HttpErrorResponse }>()
 );
 
 export const SelectWeek = createAction(
