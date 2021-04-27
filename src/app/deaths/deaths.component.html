@@ -1,54 +1,59 @@
-<div *ngIf="!(loading$ | async); else loadingRef">
-  <ng-container *ngIf="deaths$ | async as deaths">
-    <div fxLayout="column" fxLayoutGap="10px">
-      <div fxLayout="column" fxLayoutAlign="center center">
-        <ng-container *ngIf="weeks$ | async as weeks">
-          <mat-form-field appearance="fill">
-            <mat-label>Week Ending Date</mat-label>
-            <mat-select name="week" [formControl]="week">
-              <mat-option *ngFor="let week of weeks" [value]="week">
-                {{ week }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </ng-container>
-      </div>
-
-      <div fxLayout="column" fxLayoutAlign="center center">
-        <mat-card>
-          <div class="figure">{{ deaths.allCause }}</div>
-          <div class="label">All Causes</div>
-        </mat-card>
-      </div>
-
-      <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
-        <mat-card>
-          <div class="figure">{{ deaths.naturalCause }}</div>
-          <div class="label">Natural Causes</div>
-        </mat-card>
-
-        <mat-card>
-          <div class="figure">{{ deaths.diabetes }}</div>
-          <div class="label">Diabetes</div>
-        </mat-card>
-      </div>
-
-      <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
-        <mat-card>
-          <div class="figure">{{ deaths.heartDisease }}</div>
-          <div class="label">Heart Disease</div>
-        </mat-card>
-
-        <mat-card>
-          <div class="figure">{{ deaths.influenzaAndPneumonia }}</div>
-          <div class="label">Influenza and Pneumonia</div>
-        </mat-card>
-      </div>
-    </div>
-  </ng-container>
-</div>
-<ng-template #loadingRef>
-  <div fxLayout="column" fxLayoutAlign="center center">
-    <mat-spinner></mat-spinner>
+<div>
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <h3>Death Stats</h3>
   </div>
-</ng-template>
+  <ng-container *ngIf="!(loading$ | async); else loadingRef">
+    <ng-container *ngIf="deaths$ | async as deaths">
+      <div fxLayout="column" fxLayoutGap="10px">
+        <div fxLayout="column" fxLayoutAlign="center center">
+          <ng-container *ngIf="weeks$ | async as weeks">
+            <mat-form-field appearance="fill">
+              <mat-label>Week Ending Date</mat-label>
+              <mat-select name="week" [formControl]="week">
+                <mat-option *ngFor="let week of weeks" [value]="week">
+                  {{ week }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </ng-container>
+        </div>
+
+        <div fxLayout="column" fxLayoutAlign="center center">
+          <mat-card>
+            <div class="figure">{{ deaths.allCause }}</div>
+            <div class="label">All Causes</div>
+          </mat-card>
+        </div>
+
+        <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+          <mat-card>
+            <div class="figure">{{ deaths.naturalCause }}</div>
+            <div class="label">Natural Causes</div>
+          </mat-card>
+
+          <mat-card>
+            <div class="figure">{{ deaths.diabetes }}</div>
+            <div class="label">Diabetes</div>
+          </mat-card>
+        </div>
+
+        <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+          <mat-card>
+            <div class="figure">{{ deaths.heartDisease }}</div>
+            <div class="label">Heart Disease</div>
+          </mat-card>
+
+          <mat-card>
+            <div class="figure">{{ deaths.influenzaAndPneumonia }}</div>
+            <div class="label">Influenza and Pneumonia</div>
+          </mat-card>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+  <ng-template #loadingRef>
+    <div fxLayout="column" fxLayoutAlign="center center">
+      <mat-spinner></mat-spinner>
+    </div>
+  </ng-template>
+</div>
