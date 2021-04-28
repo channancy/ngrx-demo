@@ -10,11 +10,11 @@ export const SelectDeaths = createSelector(select, (state: AppState) =>
     ? state.deaths.stats.reduce((list, d) => {
         list.push({
           weekEndingDate: d.week_ending_date,
-          allCause: d.all_cause,
-          naturalCause: d.natural_cause,
-          diabetes: d.diabetes_mellitus_e10_e14,
-          influenzaAndPneumonia: d.influenza_and_pneumonia_j09_j18,
-          heartDisease: d.diseases_of_heart_i00_i09,
+          allCause: d.all_cause ?? 'N/A',
+          naturalCause: d.natural_cause ?? 'N/A',
+          diabetes: d.diabetes_mellitus_e10_e14 ?? 'N/A',
+          influenzaAndPneumonia: d.influenza_and_pneumonia_j09_j18 ?? 'N/A',
+          heartDisease: d.diseases_of_heart_i00_i09 ?? 'N/A',
         });
         return list;
       }, [])
