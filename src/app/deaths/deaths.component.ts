@@ -38,7 +38,7 @@ export class DeathsComponent implements OnInit {
       )
       .subscribe((week: string) => {
         if (week) {
-          this.week.setValue(week);
+          this.week.setValue(week, { emitEvent: false });
         }
       });
   }
