@@ -5,7 +5,6 @@ import { filter, first } from 'rxjs/operators';
 import { AppState } from '../state/app.state';
 import { SelectWeek } from './state/deaths.actions';
 import {
-  SelectDeaths,
   SelectedWeek,
   SelectedWeekData,
   SelectLoading,
